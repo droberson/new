@@ -20,7 +20,6 @@ static const char *bloom_errors[] = {
 	"Invalid file format"
 };
 
-
 static size_t ideal_size(const size_t expected, const float accuracy) {
 	return -(expected * log(accuracy) / pow(log(2.0), 2));
 }
@@ -122,7 +121,7 @@ bool bloom_lookup_or_add(bloomfilter *bf, const void *element, const size_t len)
 
 	if (bf->insert_count >= bf->expected) {
 		if (bf->max_stacks == 0 || bf->stack_count < bf->max_stacks) {
-			fprintf(stderr, "stacking... stack count: %ld expected: %ld\n", bf->stack_count, bf->expected);
+			//fprintf(stderr, "stacking... stack count: %ld expected: %ld\n", bf->stack_count, bf->expected);
 			if (!bloom_stack(bf)) {
 				fprintf(stderr, "Failed to stack bloom filter\n");
 				// TODO fail or raise error somehow?
