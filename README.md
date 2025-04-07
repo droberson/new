@@ -33,6 +33,18 @@ De-duplicate somefile.txt to stdout:
 cat somefile.txt | new
 ```
 
+When working with very large files, it helps to create a large filter
+straight away instead of relying on the software to stack
+filters. This dramatically reduces collisions in the bloom filters and
+yields a more accurate output file:
+
+```
+% wc -l rockyou.txt
+14344393 rockyou.txt
+
+% cat ~/Downloads/rockyou.txt | new -s 20000000 outfile
+```
+
 ## Caveat
 
 This uses bloom filters to aid with de-duplication. As such, false
